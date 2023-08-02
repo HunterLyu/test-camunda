@@ -8,18 +8,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 public class HolidayRequestController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @GetMapping("/api/holiday-quota")
+    @GetMapping("/api/check-holiday-quota")
     public HolidayRequestResult checkHolidayQuota(@RequestParam String userId, @RequestParam int applyDays){
-        Employee employee = employeeRepository.findById(1L).get();
-        if(employee.getRemainingHolidays() >= applyDays) {
-            return new HolidayRequestResult("Yes");
+        Optional<Employee> employee = employeeRepository.findById(userId);
+        if(employee.isEmpty()) {
+            return new HolidayRequestResult(userId, applyDays, "No");
+        }
+        if(employee.get().getRemainingHolidays() >= applyDays) {
+            return new HolidayRequestResult(userId, applyDays, "Yes");
         } else {
-            return new HolidayRequestResult("No");
+            return new HolidayRequestResult(userId, applyDays, "No");
         }
     }
 

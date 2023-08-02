@@ -16,8 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @Setter
 public class Employee {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@Id
+	private String id;
 	private String name;
  	private int remainingHolidays;
 }

@@ -31,7 +31,7 @@ public class EposController {
     @PostMapping("/api/init-db-data")
     public String initDbData() {
         Employee employee = new Employee();
-        employee.setId(1L);
+        employee.setId("1");
         employee.setName("Mike");
         employee.setRemainingHolidays(10);
         employeeRepository.save(employee);

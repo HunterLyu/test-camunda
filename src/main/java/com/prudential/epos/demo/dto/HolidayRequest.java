@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class HolidayRequest {
-    private Long employeeId;
+    private String userId;
     private int applyDays;
 }

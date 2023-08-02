@@ -11,7 +11,7 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Oliver Gierke
  */
-public interface EmployeeRepository extends CrudRepository<Employee, Long>, JpaSpecificationExecutor<Employee> {
+public interface EmployeeRepository extends CrudRepository<Employee, String>, JpaSpecificationExecutor<Employee> {
 
 
 }

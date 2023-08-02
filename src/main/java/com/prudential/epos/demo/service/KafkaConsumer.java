@@ -23,13 +23,13 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = {Constant.TOPIC_BOSS_MSG_BOX})
     public void listen(ConsumerRecord<?, ?> record) {
-        Object msg = record.value();
+        String msg = (String)record.value();
         log.info("+++++++++++++++++ message = {}", msg);
-        HolidayRequest request = (HolidayRequest) msg;
-        Employee employee = employeeRepository.findById(1L).get();
+        HolidayRequest request = JsonUtil.fromJson(msg, HolidayRequest.class);
+        Employee employee = employeeRepository.findById(request.getUserId()).get();
         employee.setRemainingHolidays(employee.getRemainingHolidays() - request.getApplyDays());
         employeeRepository.save(employee);
-        kafkaSender.sendMessage(Constant.TOPIC_BOSS_MSG_FEEDBACK, JsonUtil.toJson(new HolidayRequestResult("Yes")));
+        kafkaSender.sendMessage(Constant.TOPIC_BOSS_MSG_FEEDBACK, JsonUtil.toJson(new HolidayRequestResult(request.getUserId(), request.getApplyDays(), "Yes")));
     }
 
 }

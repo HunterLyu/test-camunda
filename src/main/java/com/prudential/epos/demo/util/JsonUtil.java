@@ -11,4 +11,12 @@ public class JsonUtil {
             throw new RuntimeException(e);
         }
     }
+
+    public static <T> T fromJson(String str, Class clazz) {
+        try {
+            return (T) JacksonUtils.enhancedObjectMapper().readValue(str, clazz);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -8,5 +8,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class HolidayRequestResult {
+    private String userId;
+    private int applyDays;
     private String status; // Yes/No
+    public String getHolidayApproved() {
+        return status;
+    }
 }
