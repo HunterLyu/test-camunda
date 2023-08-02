@@ -12,7 +12,9 @@ import org.springframework.kafka.support.JacksonUtils;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -30,10 +32,7 @@ public class EposController {
 
     @PostMapping("/api/init-db-data")
     public String initDbData() {
-        Employee employee = new Employee();
-        employee.setId("1");
-        employee.setName("Mike");
-        employee.setRemainingHolidays(10);
+        Employee employee = Employee.builder().id("1").name("Mike").remainingHolidays(10).build();
         employeeRepository.save(employee);
         return "OK";
     }
@@ -47,13 +46,13 @@ public class EposController {
 
 
     @GetMapping("/api/customers")
-    public List<Customer> getCustomers(@RequestParam(value = "userId", required = false, defaultValue = "1") String userId){
+    public List<Employee> getCustomers(@RequestParam(value = "userId", required = false, defaultValue = "1") String userId){
 
         log.info("request userId: " + userId);
 
-        List<Customer> customers = new ArrayList<>();
-        customers.add(Customer.builder().id(120L).firstName("Zengke").lastName("Huang").build());
-        customerRepository.findAll().forEach(c -> customers.add(c));
+        List<Employee> customers = new ArrayList<>();
+        customers.add(Employee.builder().id("120").name("Zengke").remainingHolidays(10).build());
+        employeeRepository.findAll().forEach(c -> customers.add(c));
         return customers;
     }
 
