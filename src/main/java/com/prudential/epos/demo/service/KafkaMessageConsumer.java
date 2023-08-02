@@ -12,7 +12,7 @@ public class KafkaMessageConsumer {
 
 
     @KafkaListener(topics = {"task1FinishTopic", "task1SendTopic", "task2FinishTopic", "task2SendTopic",
-            "task3SendTopic", "task3FinishTopic"})
+            "flow3SendTopic1", "flow3FinishTopic1", "flow3SendTopic2"})
     public void onMessage1(ConsumerRecord<?, ?> record) {
         log.info("consume message of:：" + record.topic() + "-" + record.partition() + "-" + record.value());
     }

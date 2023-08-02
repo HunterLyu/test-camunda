@@ -43,8 +43,12 @@ public class EposController {
 
 
     @GetMapping("/api/customers")
-    public List<Customer> getCustomers(){
+    public List<Customer> getCustomers(@RequestParam(value = "userId", required = false, defaultValue = "1") String userId){
+
+        log.info("request userId: " + userId);
+
         List<Customer> customers = new ArrayList<>();
+        customers.add(Customer.builder().id(120L).firstName("Zengke").lastName("Huang").build());
         customerRepository.findAll().forEach(c -> customers.add(c));
         return customers;
     }

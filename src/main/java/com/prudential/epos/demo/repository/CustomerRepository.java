@@ -16,9 +16,9 @@ public interface CustomerRepository extends CrudRepository<Customer, Long>, JpaS
 	/**
 	 * Returns a page of {@link Customer}s with the given lastname.
 	 *
-	 * @param lastname
+	 * @param lastName
 	 * @param pageable
 	 * @return
 	 */
-	Page<Customer> findByLastname(String lastname, Pageable pageable);
+	Page<Customer> findByLastName(String lastName, Pageable pageable);
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Builder;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -11,23 +13,25 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Entity
 @Slf4j
+@Builder
+@Data
 public class Customer {
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String firstname;
-	private String lastname;
+	private String firstName;
+	private String lastName;
 
 	public Long getId() {
 		return id;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 }
