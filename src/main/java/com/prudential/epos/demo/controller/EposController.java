@@ -2,22 +2,17 @@ package com.prudential.epos.demo.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.prudential.epos.demo.entity.Customer;
-import com.prudential.epos.demo.repository.CustomerRepository;
+import com.prudential.epos.demo.entity.Employee;
+import com.prudential.epos.demo.repository.EmployeeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.JacksonUtils;
 import org.springframework.kafka.support.SendResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -29,10 +24,19 @@ public class EposController {
     protected Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private CustomerRepository customerRepository;
-
+    private EmployeeRepository employeeRepository;
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
+
+    @PostMapping("/api/init-db-data")
+    public String initDbData() {
+        Employee employee = new Employee();
+        employee.setId("1");
+        employee.setName("Mike");
+        employee.setRemainingHolidays(10);
+        employeeRepository.save(employee);
+        return "OK";
+    }
 
 
     @GetMapping("/api/hello")
