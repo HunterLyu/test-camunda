@@ -39,16 +39,17 @@ public class EposController {
 
 
     @GetMapping("/api/hello")
-    public String test(){
+    public String test() {
         return "hello world";
     }
 
 
-
     @GetMapping("/api/customers")
-    public List<Employee> getCustomers(@RequestParam(value = "userId", required = false, defaultValue = "1") String userId){
+    public List<Employee> getCustomers(@RequestParam(value = "userId", required = false, defaultValue = "1") String userId,
+                                       @RequestParam(value = "instanceId", required = false, defaultValue = "1") String instanceId) {
 
         log.info("request userId: " + userId);
+        log.info("request instanceId: " + instanceId);
 
         List<Employee> customers = new ArrayList<>();
         customers.add(Employee.builder().id("120").name("Zengke").remainingHolidays(10).build());
