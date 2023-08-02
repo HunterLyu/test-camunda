@@ -1,6 +1,6 @@
 package com.prudential.epos.demo;
 
 public class Constant {
-    public static final String TOPIC_BOSS_RECEIVE = "boss-received";
-    public static final String TOPIC_BOSS_SEND = "boss-send";
+    public static final String TOPIC_BOSS_MSG_BOX = "boss-msg-box";
+    public static final String TOPIC_BOSS_MSG_FEEDBACK = "boss-msg-feedback";
 }
