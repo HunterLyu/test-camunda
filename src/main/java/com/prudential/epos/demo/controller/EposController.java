@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prudential.epos.demo.entity.Customer;
 import com.prudential.epos.demo.repository.CustomerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.JacksonUtils;
@@ -23,6 +25,8 @@ import java.util.concurrent.ExecutionException;
 @RestController
 public class EposController {
     public static final ObjectMapper OBJECT_MAPPER = JacksonUtils.enhancedObjectMapper();
+
+    protected Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -62,13 +66,13 @@ public class EposController {
     }
 
     public Void onFailure(Throwable ex) {
-        System.out.println("发送消息失败：" + ex.getMessage());
+        log.error("send kafka message failed：" + ex.getMessage());
 
         return null;
     }
 
     public SendResult<String, Object> onSuccess(SendResult<String, Object> result) {
-        System.out.println("发送消息成功：" + result.getRecordMetadata().topic() + "-"
+        log.info("send kafka message success：" + result.getRecordMetadata().topic() + "-"
                 + result.getRecordMetadata().partition() + "-" + result.getRecordMetadata().offset());
 
         return result;
