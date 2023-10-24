@@ -1,4 +1,4 @@
-package com.prudential.epos.demo.service;
+package com.prudential.bpmn.demo.service;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;

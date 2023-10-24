@@ -1,4 +1,4 @@
-package com.prudential.epos.demo.util;
+package com.prudential.bpmn.demo.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.kafka.support.JacksonUtils;

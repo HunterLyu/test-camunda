@@ -1,10 +1,10 @@
-package com.prudential.epos.demo.repository;
+package com.prudential.bpmn.demo.repository;
 
-import com.prudential.epos.demo.entity.Employee;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
+
+import com.prudential.bpmn.demo.entity.Employee;
+
 
 /**
  * Repository to manage {@link Employee} instances.

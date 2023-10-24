@@ -1,4 +1,4 @@
-package com.prudential.epos.demo.service;
+package com.prudential.bpmn.demo.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

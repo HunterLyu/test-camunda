@@ -1,4 +1,4 @@
-package com.prudential.epos.demo.dto;
+package com.prudential.bpmn.demo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
